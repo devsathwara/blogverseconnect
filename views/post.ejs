@@ -1,0 +1,32 @@
+<style>
+  .postDesc {
+    display: -webkit-box;   
+   -webkit-line-clamp: 3;   
+   -webkit-box-orient: vertical;   
+   overflow: hidden; 
+}
+</style>
+<div class="posts">
+  <% for (let i = 0; i < post.length; i++) { %>
+    <div class="post">
+      <img class="postImg" src="<%= post[i].photo %>" alt="">
+      <div class="postInfo">
+        <div class="postCats">
+          <% for (let j = 0; j < post[i].categories.length; j++) { %>
+            <span class="postCat">
+              <a class="link" href="/posts/<%= post[i].categories[j] %>"><%= post[i].categories[j] %></a>
+            </span>
+          <% } %>
+        </div>
+        <span class="postTitle">
+          <a href="/single?postId=<%=post[i]._id%>&title=<%=post[i].title%>" class="link"><%= post[i].title %></a>
+        </span>
+        <hr>
+        <span class="postDate"><%= new Date(post[i].createdAt).toLocaleDateString() %></span>
+        <div class="postDesc">
+          <%- post[i].ops %>
+        </div>
+      </div>
+    </div>
+  <% } %>
+</div>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/adminstyle.css">
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          /* text-align: center; Center align elements */
+          display: flex;
+          justify-content: center;
+          /* align-items: center; */
+          height: 100vh;
+          margin: 0;
+      }
+      .form-container{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .form-container input,
+      .form-container button {
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 16px;
+          /* margin-bottom: 10px; */
+      }
+      .form-container button {
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          cursor: pointer;
+      }
+
+      .form-container button:hover {
+          background-color: #0056b3;
+      }
+    </style>
+</head>
+<body>
+  <%-include('Admintopbar') %>
+    <div class="post-container">
+      <div class="form-container">
+        <form action="/addCategory" method="post">
+            <input type="text" name="name" placeholder="Enter Categories..">
+            <button value="submit">Add Category</button>
+        </form>
+    </div>
+        <table class="table-custom">
+            <thead>
+                <tr>
+                    <th colspan="8" class="table-heading">Category Details</th>
+                </tr>
+                <tr>
+                  <th scope="col">Category Name</th>
+                  <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+              <%if(category.length>0){
+              for(let i=0; i<category.length; i++) { %>
+                <tr>
+                  <!-- <th scope="row">1</th> -->
+                  <td><%=category[i].name%></td>
+                  <td>
+                  <div class="d-flex">
+                    <form action="/deleteCategory" method="post">
+                      <input type="hidden" name="names" value="<%=category[i].name%>">
+                      <button class="delete-btn">Delete</button>
+                    </form>
+                  </div>
+                </td>
+                  <!-- <td><a href="/update" class="custom-link">Update</a></td>
+                  <td><a href="/delete" class="custom-link">Delete</a></td> -->
+                </tr>
+                <% } }  else{%>
+                  <tr>
+                      <td colspan="8">No data Found</td>
+                  </tr>
+                  <%}%>
+          </tbody>
+                
+              </tbody>
+        </table>
+    </div>
+</body>
+</html>

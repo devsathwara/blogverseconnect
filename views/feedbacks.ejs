@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <style>
+    * {
+      margin: 0;
+    }
+  </style>
+  <style>
+    .link {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Lora:ital@0;1&family=Varela&family=Varela+Round&display=swap"
+    rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css">
+  <title>Blog App</title>
+  <style>
+     * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Josefin Sans', sans-serif;
+      background-color: #f2f2f2;
+    }
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* This ensures that the container takes up the full viewport height. Adjust as needed. */
+}
+
+.feedback-table {
+  width: 50%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+
+.feedback-table th, .feedback-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.feedback-table th {
+  background-color: #f8f8f8;
+}
+
+.feedback-table tbody tr:nth-child(odd) {
+  background-color: #f4f4f4;
+}
+
+/* CSS for Delete button */
+.delete-button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <%- include('topbar') %>
+  <div class="container">
+      <h1>User Feedbacks</h1>
+    <!-- Check if there are feedbacks to display -->
+    <% if (feedbacks) { %>
+       <!-- ... Previous code ... -->
+       <table class="feedback-table">
+        <thead>
+          <tr>
+            <th>Post Title</th>
+            <th>Author</th>
+            <th>Rating</th>
+            <th>Feedback</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% feedbacks.forEach(feedback => { %>
+            <tr>
+              <td>
+                <% if (feedback.blogId) { %>
+                  <%= feedback.blogId.title %>
+                <% } else { %>
+                  Title Not Available
+                <% } %>
+              </td>
+              <td><%= feedback.author %></td>
+              <td><%= feedback.rating %></td>
+              <td><%= feedback.feedback %></td>
+              <td>
+                <form action="/delete-feedback" method="POST">
+                  <input type="hidden" name="feedbackId" value="<%= feedback._id %>" />
+                  <button type="submit" class="delete-button">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    
+  
+  <!-- ... More code ... -->
+  
+    <% } else { %>
+      <p>No feedbacks available.</p>
+    <% } %>
+  </div>
+</body>
+</html>

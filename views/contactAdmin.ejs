@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/adminstyle.css">
+</head>
+<body>
+    <%-include('Admintopbar') %>
+    <div class="post-container">
+        <table class="table-custom">
+            <thead>
+                <tr>
+                    <th colspan="8" class="table-heading">Contact Details</th>
+                </tr>
+                <tr>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">EmailID</th>
+                  <th scope="col">Phone No</th>
+                  <th scope="col">Query</th>
+                  <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <% if(contact.length>0){
+                  for(let i=0;i<contact.length;i++) { %>
+                  <td><%=contact[i].firstName%></td>
+                  <td><%=contact[i].lastName%></td>
+                  <td><%=contact[i].email%></td>
+                  <td><%=contact[i].phoneNo%></td>
+                  <td><%=contact[i].Query%></td>
+                  <td>
+                    <div class="d-flex">
+                        <!-- <form action="/edit" method="post" class="m-0 p-0">
+                            <input type="hidden" name="email" value="<%=contact[i].email %>">
+                                <button class="btn m-0 px-2 py-0 text-primary">Edit</button>
+                        </form> -->
+                        <form action="/delete" method="post">
+                            <input type="hidden" name="email" value="<%=contact[i].email %>">
+                            <button class="delete-btn">Delete</button>
+                        </form>
+                    </div>
+                  </td>
+                </tr>
+                <% } }  else{%>
+                    <tr>
+                        <td colspan="8">No data Found</td>
+                    </tr>
+                    <%}%>
+            </tbody>
+              </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/adminstyle.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* text-align: center; Center align elements */
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px; /* Add some margin at the bottom */
+        }
+
+        .form-container select,
+        .form-container button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-right: 10px; /* Add some space between elements */
+        }
+
+        .form-container button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .table-custom {
+            width: 80%; /* Adjust as needed */
+            margin: 0 auto; /* Center the table */
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+
+        /* Rest of your existing CSS... */
+    </style>
+</head>
+<body>
+    <%-include('Admintopbar') %>
+        <div class="centered-div">
+
+            <div class="post-container">
+                <div class="form-container">
+                    <form action="/archiveselected" method="post">
+                        <select name="category">
+                            <option value="0">Select Category</option>
+                            <% category.forEach(item => { %>
+                              <option value="<%= item.name %>"><%= item.name %></option>
+                              <% }); %>
+                            </select>                                                               
+                            <select name="month">
+                            <option value="000">Select Month</option>
+                            <option value="001">January</option>
+                            <option value="002">February</option>
+                            <option value="003">March</option>
+                            <option value="004">April</option>
+                            <option value="005">May</option>
+                            <option value="006">June</option>
+                            <option value="007">July</option>
+                            <option value="008">August</option>
+                            <option value="009">September</option>
+                            <option value="0010">October</option>
+                            <option value="0011" >November</option>
+                            <option value="0012">December</option>
+                        </select>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+        <table class="table-custom">
+            <thead>
+                <tr>
+                    <th colspan="8" class="table-heading">Post Details</th>
+                </tr>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Categories</th>
+                    <th scope="col">Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%if(post.length>0){
+                for(let i=0; i<post.length; i++) { %>
+                <tr>
+                    <!-- <th scope="row">1</th> -->
+                    <td><%=post[i].title%></td>
+                    <td><%-post[i].ops[i]%></td>
+                    <td><%=post[i].username%></td>
+                    <td><%=post[i].categories%></td>
+                    <td><%=post[i].createdAt.toLocaleString('default', { month: 'long' })%></td>
+                    <td>
+                        <div class="d-flex">
+                            <form action="/deletearchivepost" method="post">
+                              <input type="hidden" name="postID" value="<%=post[i]._id%>">
+                              <button class="delete-btn">Delete</button>
+                            </form>
+                          </div>
+                    </td>
+                </tr>
+                <% } }  else{%>
+                    <tr>
+                        <td colspan="8">No data Found</td>
+                    </tr>
+                    <%}%>
+            </tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+    </body>
+</html>

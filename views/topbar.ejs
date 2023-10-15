@@ -1,0 +1,52 @@
+
+
+<div class="top">
+  <div class="topLeft">
+    <i class="topIcon fab fa-facebook-square"></i>
+    <i class="topIcon fab fa-instagram-square"></i>
+    <i class="topIcon fab fa-pinterest-square"></i>
+    <i class="topIcon fab fa-twitter-square"></i>
+  </div>
+  <div class="topCenter">
+    <ul class="topList">
+      <li class="topListItem">
+        <a class="link" href="/">HOME</a>
+      </li>
+      <li class="topListItem"><a class="link" href="/about">ABOUT</a></li>
+      <li class="topListItem"> <a class="link" href="/contact">CONTACT</a></li>
+      <%if(userId!=null){%>
+      <li class="topListItem">
+        <a class="link" href="/write">WRITE</a>
+      </li>
+      <li class="topListItem">
+        <a class="link" href="/myBlogs">MY BLOGS</a>
+      </li>
+      <li class="topListItem">
+        <a class="link" href="/feedbacks">FEEDBACKS</a>
+      </li>
+     <li class="topListItem">  <a class="link" href="/logout">LOGOUT</a></li>
+      <%}%>
+    </ul>
+  </div>
+  <div class="topRight">
+    <%if(userId!=null){%>
+       <a class="link" href="/updateuser">
+      <% if (img!=null) { %>
+        <img class="topImg" src="<%= img %>" alt="User Profile Image">
+      <% } else { %>
+        <img class="topImg" src="/img/defaultuserpic.jpg" alt="Default Image">
+      <% } %>
+    </a>
+  <%}
+  else{%>
+      <ul class="topList">
+        <li class="topListItem">
+          <a class="link" href="/login">LOGIN</a>
+        </li>
+        <li class="topListItem">
+          <a class="link" href="/register">REGISTER</a>
+        </li>
+      </ul>
+      <%}%>
+  </div>
+</div>

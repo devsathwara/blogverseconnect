@@ -1,0 +1,180 @@
+/* (A) GLOBAL */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  min-height: 100vh;
+  padding: 0; margin: 0;
+  background-color: beige;
+}
+
+/* (B) SIDEBAR */
+/* (B1) SIDEBAR ITSELF */
+#pgside {
+  width: 200px;
+  flex-shrink: 0;
+  transition: width 0.2s;
+  background: #283039;
+}
+
+/* (B2) USER OR BRANDING */
+#pgside #pguser {
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
+}
+#pgside #pguser img {
+  width: 50px;
+  margin-right: 5px;
+  border-radius: 50%
+}
+
+/* (B3) SIDEBAR ITEMS */
+#pgside, #pgside a { color: #fff; }
+#pgside a {
+  display: block;
+  padding: 20px;
+  width: 100%;
+  text-decoration: none;
+  cursor: pointer;
+}
+#pgside a.current { background: #7c1919; }
+#pgside a:hover { background: #9b2323; }
+
+/* (B4) SIDEBAR ICONS & TEXT */
+#pgside i.ico, #pgside i.txt { font-style: normal; }
+#pgside i.ico {
+  font-size: 1.1em;
+  margin-right: 10px;
+}
+
+/* (B5) SMALL SCREEN TRANSFORMATION */
+@media screen and (max-width:768px) {
+  #pgside { width: 70px; }
+  #pgside #pguser { justify-content: center; }
+  #pgside a {
+    text-align: center;
+    padding: 20px 0;
+  }
+  #pgside i.ico {
+    font-size: 1.5em;
+    margin-right: 0;
+  }
+  #pgside i.txt { display: none; }
+}
+
+/* (C) MAIN CONTENTS */
+#pgmain {
+  flex-grow: 1;
+  padding: 20px;
+  background: #f2f2f2;
+}
+
+.post-container{
+  margin: 0 auto;
+  width: 100%;
+  /* max-width: 800px; */
+  background-color: beige;
+}
+/* Style for the table */
+.table-custom {
+  width: 300px; /* Set your desired width */
+  height: 200px; /*Set your desired height */
+  margin-top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  background-color: #333;
+}
+
+
+/* Style for the table head */
+.table-custom thead {
+  background-color: #444;
+}
+
+/* Style for table head cells */
+.table-custom th {
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Style for table body rows */
+.table-custom tbody tr {
+  background-color: #555;
+}
+
+/* Style for table body cells */
+.table-custom td {
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Style for odd rows (alternating background color) */
+.table-custom tbody tr:nth-child(odd) {
+  background-color: #666;
+}
+
+/* Style for hover effect on rows */
+.table-custom tbody tr:hover {
+  background-color: #777;
+}
+
+
+.custom-link {
+  color: #FF5733; /* Change this to your desired color (e.g., #FF5733 is a shade of orange) */
+  text-decoration: none; /* Removes the default underline */
+}
+
+.custom-link:hover {
+  color: #FF5733; /* Change this to the color you want on hover */
+  text-decoration: underline; /* Add underline on hover if desired */
+}
+.delete-btn {
+  background-color: #dc3545; /* Red color for danger/alert */
+  color: #fff; /* White text */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px 16px; /* Adjust padding as needed */
+  font-size: 14px; /* Adjust font size as needed */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.delete-btn:hover {
+  background-color: #c82333; /* Darker shade of red on hover */
+}
+
+.delete-btn:focus {
+  outline: none; /* Remove outline on focus for better visual appearance */
+}
+.archive-btn {
+  background-color: #f39c12; /* Blue color */
+  color: #fff; /* White text */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 8px 16px; /* Adjust padding as needed */
+  font-size: 14px; /* Adjust font size as needed */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.archive-btn:hover {
+  background-color: #ecc98f; /* Darker shade of blue on hover */
+}
+
+.archive-btn:focus {
+  outline: none; /* Remove outline on focus for better visual appearance */
+}
+
+.centered-div {
+  margin: auto;
+  
+}
+
+

@@ -1,0 +1,102 @@
+<div class="sidebar">
+  <div class="sidebarItem">
+    <!-- <span class="sidebarTitle">ABOUT ME</span>
+    <img src="https://source.unsplash.com/random" alt="">
+    <p>
+      Laboris sunt aute cupidatat velit magna velit ullamco dolore mollit
+      amet ex esse.Sunt eu ut nostrud id quis proident.
+    </p> -->
+    <h1>Users and Posts</h1>
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <div>
+      <p>Total Users: <%= userCount %></p>
+      <p>Total Posts: <%= postCount %></p>
+    </div>
+    <div>
+      <% if (userCount > postCount) { %>
+      <p>There are more users than posts.</p>
+      <% } else if (userCount < postCount) { %>
+      <p>There are more posts than users.</p>
+      <% } else { %>
+      <p>There are an equal number of users and posts.</p>
+      <% } %>
+    </div>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const userCount = <%= JSON.stringify(userCount) %>;
+      const postCount = <%= JSON.stringify(postCount) %>;
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Users', 'Posts'],
+                datasets: [{
+                    label: 'Count',
+                    data: [userCount, postCount],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)',
+                    ],
+                    borderWidth: 1,
+                }],
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMin: 0, // Minimum value for the Y-axis
+                        suggestedMax: Math.max(userCount, postCount) + 5,
+                    },
+                },
+            },
+        });
+    </script>
+  </div>
+  <!-- <div class="sidebarItem">
+    <span class="sidebarTitle">CATEGORIES</span>
+    <ul class="sidebarList">
+      <li class="sidebarListItem">
+        <a class="link" href="/posts/Life">Life</a>
+      </li>
+      <li class="sidebarListItem">
+        <a class="link" href="/posts/Music">Music</a>
+      </li>
+      <li class="sidebarListItem">
+        <a class="link" href="/posts/Sport">Sport</a>
+      </li>
+      <li class="sidebarListItem">
+        <a class="link" href="/posts/Style">Style</a>
+      </li>
+      <li class="sidebarListItem">
+        <a class="link" href="/posts/Tech">Tech</a>
+      </li>
+      <li class="sidebarListItem">
+        <a class="link" href="/posts/cat=Cinema">Cinema</a>
+      </li>
+    </ul>
+  </div> -->
+  <div class="sidebarItem">
+  <span class="sidebarTitle">CATEGORIES</span>
+  <ul class="sidebarList">
+    <% category.forEach((categories) => { %>
+      <li class="sidebarListItem">
+        <a class="link" href="/posts/<%= categories.name %>"><%= categories.name %></a>
+      </li>
+    <% }); %>
+  </ul>
+</div>
+
+  <div class="sidebarItem">
+    <span class="sidebarTitle">FOLLOW US</span>
+    <div class="sidebarSocial">
+      <i class="sidebarIcon fab fa-facebook-square"></i>
+      <i class="sidebarIcon fab fa-instagram-square"></i>
+      <i class="sidebarIcon fab fa-pinterest-square"></i>
+      <i class="sidebarIcon fab fa-twitter-square"></i>
+    </div>
+  </div>
+</div>

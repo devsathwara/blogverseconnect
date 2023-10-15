@@ -1,0 +1,92 @@
+<!-- single.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Single Post</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/singlePost.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+ integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+ crossorigin="anonymous" />
+<link
+ href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Lora:ital@0;1&family=Varela&family=Varela+Round&display=swap"
+ rel="stylesheet" />
+ <style>
+    * {
+      margin: 0;
+    }
+  </style>
+  <style>
+    .link {
+      text-decoration: none;
+      color: inherit;
+    }
+    .bottomLeftText{
+      position: absolute;
+      font-size: 20px;
+    top: 389px; /* Adjust this value to control the vertical position */
+    /*left: 21px; /* Adjust this value to control the horizontal position */
+    color: rgb(0, 0, 0); /* Set the text color */
+    padding: 5px;
+    }
+    
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+</head>
+
+<body>
+  <%- include('topbar') %>
+  <div class="single">
+      <div class="singlePost">
+          <div class="singlePostWrapper">
+              <img class="singlePostImg" src="<%= post.photo %>" alt="<%= post.title %>">
+                 <div class="bottomLeftText">
+                  AverageRating:
+                  <% for (let i = 1; i <= rating; i++) { %>
+                 <i class="fas fa-star" style="color: #f5ee19;"></i>
+                <% } %>
+            </div>
+              <h1 class="singlePostTitle">
+                  <%= post.title %>
+                  <%if(username==post.username){%>
+                  <div class="singlePostEdit">
+                      <a class="singlePostIcon far fa-edit" href="/updateblog/<%= post._id %>"></a>
+                      <a class="singlePostIcon far fa-trash-alt" href="/deleteblog/<%= post._id %>"></a>
+                  </div>
+                  <%}%>
+              </h1>
+
+              <div class="singlePostInfo">
+                  <span>
+                      Author:
+                      <b class="singlePostAuthor">
+                          <a class="link" href="/posts?username=<%= post.username %>"><%= post.username %></a>
+                      </b>
+                  </span>
+                  <%if(req.session.username!=post.username){%>
+                  <span>
+                    <b class="singlePostAuthor">
+                      <a class="link" href="/rating/<%= post._id %>/<%= post.username %>">Rate this Blog</a>
+                  </b>
+                  </span>
+                  <%}%>
+                  <span><%= post.createdAt %></span>
+              </div>
+              <p class="singlePostDesc">
+                  <%- post.ops %>
+              </p>
+              
+          </div>
+          
+      </div>
+      <%- include('sidebar') %>
+             
+  </div>
+
+  
+</body>
+</html>

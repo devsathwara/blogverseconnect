@@ -1,0 +1,84 @@
+<!-- settings.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+  crossorigin="anonymous" />
+ <link
+  href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Lora:ital@0;1&family=Varela&family=Varela+Round&display=swap"
+  rel="stylesheet" />
+  <style>
+     * {
+       margin: 0;
+     }
+   </style>
+   <style>
+     .link {
+       text-decoration: none;
+       color: inherit;
+     }
+   </style> <link rel="stylesheet" href="/css/style.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+ integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+ crossorigin="anonymous" />
+<link
+ href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Lora:ital@0;1&family=Varela&family=Varela+Round&display=swap"
+ rel="stylesheet" />
+ <style>
+    * {
+      margin: 0;
+    }
+  </style>
+  <style>
+    .link {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <%- include('topbar') %>
+  <div class="settings">
+    <div class="settingsWrapper">
+      <div class="settingsTitle">
+        <span class="settingsTitleUpdate">Update Your Account</span>
+        <a class="settingsTitleDelete" href="/delete-user">Delete Account</a>
+      </div>
+      <form class="settingsForm" method="post" action="/update-User" enctype="multipart/form-data">
+        <label style="text-align: center;">Profile Picture</label>
+        <div class="settingsPP">
+          <img src="<%=user.profilePic%>" id="imgId"  alt="">
+          <label for="fileInput">
+            <i class="settingsPPIcon fas fa-user-circle fa-lg"></i>
+          </label>
+          <input id="fileInput" name="image" type="file" style="display: none;" class="settingsPPInput">
+        </div>
+        <label>Username</label>
+        <input type="text" value="<%=user.username%>" name="name">
+        <label>Email</label>
+        <input type="email" value="<%=user.email%>" name="email">
+        <button class="settingsSubmitButton" type="submit">Update</button>
+    </form>
+    </div>
+    <%- include('sidebar') %>
+  </div>
+</body>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const image = document.getElementById("imgId");
+    const input = document.getElementById("fileInput");
+    input.addEventListener("change", () => {
+      image.src = URL.createObjectURL(input.files[0]);
+    });
+  });
+</script>
+
+</html>

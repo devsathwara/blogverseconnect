@@ -1,0 +1,85 @@
+<!-- register.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+  crossorigin="anonymous" />
+ <link
+  href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Lora:ital@0;1&family=Varela&family=Varela+Round&display=swap"
+  rel="stylesheet" />
+  <style>
+     * {
+       margin: 0;
+     }
+   </style>
+   <style>
+     .link {
+       text-decoration: none;
+       color: inherit;
+     }
+   </style>
+   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+  const passwordInput = document.getElementById('password');
+  const passwordError = document.getElementById('passwordError');
+
+  passwordInput.addEventListener('input', validatePassword);
+
+  function validatePassword() {
+    const password = passwordInput.value;
+    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
+
+    if (!passwordPattern.test(password)) {
+      passwordError.textContent = 'Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character (!@#$%^&*).';
+    } else {
+      passwordError.textContent = '';
+    }
+  }
+});
+
+   </script>
+</head>
+
+<body>
+    <%- include('topbar') %>
+  <div class="register">
+    <span class="registerTitle">Register</span>
+    <div id="passwordError" class="error"></div>
+    <% if(message==null){%>
+    <form class="registerForm" action="/save-user" method="post">
+      <label>Username</label>
+      <input class="registerInput" name="name" type="text" placeholder="Enter your username...">
+      <label>Email</label>
+      <input class="registerInput" name="email" type="email" placeholder="Enter your email...">
+      <label>Password</label>
+      <input class="registerInput" id="password" name="password" type="password" placeholder="Enter your password...">
+      <button class="registerButton">Register</button>
+    </form>
+    <a href="/login" style="text-decoration: none;" class="registerLoginButton">Login</a>
+  </div>
+  <%}else if(message=='User doesnt exist! Please Register Now'){%>
+    <div class="alert alert-danger" role="alert">
+        <%= message %>
+  
+    </div>
+    <form class="registerForm" action="/save-user" method="post">
+      <label>Username</label>
+      <input class="registerInput" name="name" type="text" placeholder="Enter your username...">
+      <label>Email</label>
+      <input class="registerInput" name="email" type="text" placeholder="Enter your email...">
+      <label>Password</label>
+      <input class="registerInput" name="password" type="password" id="password" placeholder="Enter your password...">
+      <button class="registerButton">Register</button>
+    </form>
+    <a href="/login" style="text-decoration: none;" class="registerLoginButton">Login</a>
+  </div>
+  <%}%>
+</body>
+
+</html>

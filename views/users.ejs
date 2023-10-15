@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/adminstyle.css">
+    <style>
+      .table-custom img {
+    max-width: 100px; /* Adjust the maximum width as needed */
+    max-height: 100px; /* Adjust the maximum height as needed */
+    width: auto;
+    height: auto;
+}
+    </style>
+</head>
+<body>
+  <%-include('Admintopbar') %>
+    <div class="post-container">
+        <table class="table-custom">
+            <thead>
+                <tr>
+                    <th colspan="8" class="table-heading">User Details</th>
+                </tr>
+                <tr>
+                  <th scope="col">User Profile Picture</th>
+                  <th scope="col">User Name</th>
+                  <th scope="col">User EmailID</th>
+                  <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <% if(user.length>0){
+            for(let i=0; i<user.length; i++) { %>
+            <tbody>
+                <tr>
+                  <td><img src="<%=user[i].profilePic %>" alt="Profile pic is not there"></td>
+                  <td><%=user[i].username %></td>
+                  <td><%=user[i].email %></td>
+                  <td>
+                  <div class="d-flex">
+                    <form action="/deleteUser" method="post">
+                        <input type="hidden" name="email" value="<%=user[i].email%>">
+                        <button class="delete-btn">Delete</button>
+                    </form>
+                  </div>
+                </td>
+                </tr>
+                <% } } else{%>
+                  <tr>
+                      <td colspan="8">No data Found</td>
+                  </tr>
+                  <%}%>
+          </tbody>
+              </tbody>
+        </table>
+    </div>
+</body>
+</html>

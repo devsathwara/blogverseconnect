@@ -1,0 +1,131 @@
+<!-- write.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Write</title>
+    <!-- Main Quill library -->
+    <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
+    <!-- Theme included stylesheets -->
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Lora:ital@0;1&family=Varela&family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+      }
+    </style>
+    <style>
+      .link {
+        text-decoration: none;
+        color: inherit;
+      }
+      #selectedImage {
+        display: block;
+        align-items: center;
+        max-width: 20%;
+        height: 40%;
+        margin-top: 10px; /* Adjust as needed */
+        margin-left: 150px;
+        object-fit: cover;
+      }
+      .input {
+      text-align: center;
+  font-family: monospace;
+  min-width:290px;
+  outline: none;
+  border: 1px solid #dadada;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f3f7fe;
+  transition: .3s;
+  color: #3b82f6;
+}
+.input-div{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.input:focus {
+  border: 1px solid #3b82f6;
+  box-shadow: 0 0 0 4px #3b83f65f
+}
+    </style>
+  </head>
+  <body>
+    <%- include('topbar') %>
+    <div class="write">
+      <!-- <img class="writeImg" src="https://images.pexels.com/photos/6685428/pexels-photo-6685428.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt=""> -->
+      <img id="selectedImage" class="writeImg" src="" alt="Selected Image" />
+      <form
+        class="writeForm"
+        id="writeForm"
+        action="/save"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <div class="writeFormGroup">
+          <label for="fileInput">
+            <i class="writeIcon fa fa-plus" aria-hidden="true"></i>
+          </label>
+          <input
+            id="fileInput"
+            type="file"
+            name="image"
+            style="display: none"
+            onchange="handleFileChange(event)"
+          />
+          <input
+            class="writeInput"
+            name="title"
+            id="title"
+            placeholder="Title"
+            type="text"
+          />
+          <!-- Add an <img> element to display the selected image -->
+        </div>
+        <div class="editor" id="editor"></div>
+        <!-- <div class="input-div">
+          <input placeholder="Type Your Category...[Ex: Music Travel]" class="input" id="categories" name="categories" type="text">
+        </div> -->
+        <div class="input-div">
+          <p>Select Categories:</p>
+          <div id="categoryCheckboxes">
+            <% categories.forEach((category) => { %>
+              <input
+                type="checkbox"
+                name="selectedCategories"
+                value="<%= category.name %>"
+                class="categories"
+                id="categories"
+              />
+              <label for="<%= category.name %>"><%= category.name %></label>
+            <% }); %>
+          </div>
+
+        </div>
+        
+        
+        <!-- quill editor  will be here -->
+        <button class="writeSubmit" type="submit">Publish</button>
+      </form>
+    </div>
+   
+    
+    <script src="/scripts/quill.js"></script>
+  </body>
+</html>
