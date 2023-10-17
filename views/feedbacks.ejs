@@ -17,6 +17,7 @@
       color: inherit;
     }
   </style>
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
     crossorigin="anonymous" />
@@ -116,7 +117,7 @@
                 <% } %>
               </td>
               <td><%= feedback.author %></td>
-              <td><%= feedback.rating %></td>
+              <td><%= feedback.rating %> <i class="fas fa-star" style="color: #f5ee19;"></i></td>
               <td><%= feedback.feedback %></td>
               <td>
                 <form action="/delete-feedback" method="POST">

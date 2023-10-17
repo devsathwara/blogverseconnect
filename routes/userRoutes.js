@@ -294,7 +294,7 @@ router.get('/logout', (req, res) => {
 router.post('/update-User', upload.single('image'), async (req, res) => {
   try {
     const { name, email } = req.body;
-    const posts= await Post.find();
+    const posts= await Post.find({username:req.session.username});
     const userId = req.session.userId; // Get the user's ID from the session
     const category=await Category.find();
     const usersCount = await User.aggregate([
@@ -325,7 +325,9 @@ router.post('/update-User', upload.single('image'), async (req, res) => {
 
     // Update other user information
     await User.findByIdAndUpdate(userId, { username: name, email });
-
+    
+    await Post.updateMany({username:name})
+    req.session.username=name;
     console.log('User updated successfully');
      res.redirect('/'); // Redirect to the homepage or another appropriate page
     //res.render('homepage', { userId: req.session.userId, post: posts, img: userExist.profilePic,userCount:userCount,postCount:postCount,category:category});
