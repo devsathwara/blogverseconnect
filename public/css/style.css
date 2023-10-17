@@ -607,3 +607,81 @@
     width: 70%;
     margin: 0 auto;
 }
+/* Define a base font size */
+html {
+  font-size: 16px;
+}
+
+/* Style for screens smaller than 768px (e.g., mobile devices) */
+@media (max-width: 768px) {
+  .home {
+    flex-direction: column; /* Stack elements vertically */
+  }
+
+  .headerTitleSm {
+    top: 10%; /* Adjust position */
+    font-size: 18px;
+  }
+
+  .headerTitleLg {
+    top: 8%; /* Adjust position */
+    font-size: 36px;
+  }
+
+  .headerImg {
+    height: auto; /* Allow image to resize proportionally */
+  }
+
+  .top {
+    height: auto; /* Let the content determine the height */
+    position: relative; /* No sticky positioning */
+  }
+
+  .topLeft,
+  .topRight {
+    flex: 1; /* Adjust the proportions */
+  }
+
+  .topCenter {
+    flex: 2; /* Adjust the proportions */
+  }
+
+  .topListItem {
+    margin-right: 10px; /* Reduce spacing */
+    font-size: 16px; /* Adjust font size */
+  }
+
+  .writeImg {
+    margin-left: 0; /* Remove left margin */
+    width: 100%; /* Expand to full width */
+  }
+
+  .writeInput {
+    font-size: 24px; /* Increase font size */
+    width: 100%; /* Expand to full width */
+  }
+
+  .writeText {
+    font-size: 18px; /* Adjust font size */
+  }
+
+  .settings {
+    flex-direction: column; /* Stack elements vertically */
+  }
+
+  .settingsPP > img {
+    height: 100px; /* Adjust image size */
+    width: 100px; /* Adjust image size */
+  }
+
+  .settingsForm > input {
+    font-size: 18px; /* Increase font size */
+  }
+
+  .post {
+    width: 100%; /* Expand to full width */
+    margin: 0; /* Remove margins */
+  }
+}
+
+/* Additional media queries for larger screens can be added as needed */

@@ -44,8 +44,12 @@
             border: 1px solid #ccc;
             background-color: #fff;
         }
-
-        /* Rest of your existing CSS... */
+        .table-custom img{
+    max-width: 100px; /* Adjust the maximum width as needed */
+    max-height: 100px; /* Adjust the maximum height as needed */
+    width: auto;
+    height: auto;
+}
     </style>
 </head>
 <body>
@@ -85,6 +89,7 @@
                     <th colspan="8" class="table-heading">Post Details</th>
                 </tr>
                 <tr>
+                    <th scope="col">Image</th>
                     <th scope="col">Title</th>
                     <th scope="col">Content</th>
                     <th scope="col">Author</th>
@@ -98,6 +103,7 @@
                 for(let i=0; i<post.length; i++) { %>
                 <tr>
                     <!-- <th scope="row">1</th> -->
+                    <td><img src="<%=post[i].photo%>" alt="There is no photo"></td>
                     <td><%=post[i].title%></td>
                     <td><%-post[i].ops[i]%></td>
                     <td><%=post[i].username%></td>
